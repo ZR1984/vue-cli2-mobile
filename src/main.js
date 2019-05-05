@@ -7,6 +7,11 @@ import https from './common/https'
 import store from './store/store'
 import 'lib-flexible'
 import './assets/css/public.less'
+import * as custom from './common/filter'
+
+Object.keys(custom).forEach(key => {
+  Vue.filter(key, custom[key])
+})
 
 Vue.prototype.$https = https
 
