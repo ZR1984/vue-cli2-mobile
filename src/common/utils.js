@@ -48,96 +48,6 @@ export const strFormat = function (str, len) {
 }
 
 /**
- * @desc 获取当前时间
- */
-export const getNowFormatDate = function () {
-  var date = new Date();
-  var seperator1 = '/';
-  var seperator2 = ':';
-  var month = date.getMonth() + 1;
-  var strDate = date.getDate();
-  if (month >= 1 && month <= 9) {
-    month = '0' + month;
-  }
-  if (strDate >= 0 && strDate <= 9) {
-    strDate = '0' + strDate;
-  }
-  var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate +
-    " " + date.getHours() + seperator2 + date.getMinutes() +
-    seperator2 + date.getSeconds();
-  return currentdate;
-}
-
-/**
- * 
- * @desc 生成指定范围随机数
- * @param  {Number} min 
- * @param  {Number} max 
- * @return {Number} 
- */
-export const randomNum = function () {
-  return Math.floor(min + Math.random() * (max - min));
-}
-
-/**
- * 
- * @desc   url参数转对象
- * @param  {String} url  default: window.location.href
- * @return {Object} 
- */
-export const parseQueryString = function (url = window.location.href) {
-  var search = url.substring(url.lastIndexOf('?') + 1)
-  if (!search) {
-    return {}
-  }
-  return JSON.parse('{"' + decodeURIComponent(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
-}
-
-/**
- * 
- * @desc 获取浏览器类型和版本
- * @return {String} 
- */
-export const getExplore = function () {
-  var sys = {},
-    ua = navigator.userAgent.toLowerCase(),
-    s;
-  (s = ua.match(/rv:([\d.]+)\) like gecko/)) ? sys.ie = s[1]:
-    (s = ua.match(/msie ([\d\.]+)/)) ? sys.ie = s[1] :
-    (s = ua.match(/edge\/([\d\.]+)/)) ? sys.edge = s[1] :
-    (s = ua.match(/firefox\/([\d\.]+)/)) ? sys.firefox = s[1] :
-    (s = ua.match(/(?:opera|opr).([\d\.]+)/)) ? sys.opera = s[1] :
-    (s = ua.match(/chrome\/([\d\.]+)/)) ? sys.chrome = s[1] :
-    (s = ua.match(/version\/([\d\.]+).*safari/)) ? sys.safari = s[1] : 0;
-  // 根据关系进行判断
-  if (sys.ie) return ('IE: ' + sys.ie)
-  if (sys.edge) return ('EDGE: ' + sys.edge)
-  if (sys.firefox) return ('Firefox: ' + sys.firefox)
-  if (sys.chrome) return ('Chrome: ' + sys.chrome)
-  if (sys.opera) return ('Opera: ' + sys.opera)
-  if (sys.safari) return ('Safari: ' + sys.safari)
-  return 'Unkonwn'
-}
-
-/**
- * 
- * @desc 获取操作系统类型
- * @return {String} 
- */
-export const getOS = function () {
-  var userAgent = 'navigator' in window && 'userAgent' in navigator && navigator.userAgent.toLowerCase() || '';
-  var vendor = 'navigator' in window && 'vendor' in navigator && navigator.vendor.toLowerCase() || '';
-  var appVersion = 'navigator' in window && 'appVersion' in navigator && navigator.appVersion.toLowerCase() || '';
-
-  if (/mac/i.test(appVersion)) return 'MacOSX'
-  if (/win/i.test(appVersion)) return 'windows'
-  if (/linux/i.test(appVersion)) return 'linux'
-  if (/iphone/i.test(userAgent) || /ipad/i.test(userAgent) || /ipod/i.test(userAgent)) return 'ios'
-  if (/android/i.test(userAgent)) return 'android'
-  if (/win/i.test(appVersion) && /phone/i.test(userAgent)) return 'windowsPhone'
-}
-
-/**
  *  @desc 设置  本地缓存
  */
 export const setStorage = function (key, obj) {
@@ -202,10 +112,10 @@ export const copyData = function (data) {
  * @param obj:{width,height[,quality]}
  */
 
-export const dealImage = function(path, obj, callback) {
+export const dealImage = function (path, obj, callback) {
   var img = new Image();
   img.src = path;
-  img.onload = function() {
+  img.onload = function () {
     var that = this;
     // 默认按比例压缩
     var w = that.width,
@@ -261,7 +171,7 @@ export const base64ToBlob = function (code) {
  * @description 获取search查询参数
  */
 
-export const getQueryString = function() {
+export const getQueryString = function () {
   const url = location.search;
   const rs = {}
   if (url.indexOf('?') === 0) {
@@ -275,4 +185,17 @@ export const getQueryString = function() {
     })
   }
   return rs
+}
+
+
+/**
+ * @description 页面滚动到第一个报错信息所在的位置
+ * @param {Object} self :this
+ * @param {*} data :ref值
+ */
+export const scrollToError = (self, data) => {
+  document.documentElement.scrollTop = self.$refs[
+    data[0]
+  ][0].offsetTop; //页面滚动到第一个报错信息所在的位置
+  document.body.scrollTop = self.$refs[data[0]][0].offsetTop;
 }

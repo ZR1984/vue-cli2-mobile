@@ -5,10 +5,6 @@ import {urlConfig} from '../../static/urlConfig'
 
 axios.defaults.baseURL = urlConfig.baseUrl
 
-// axios.defaults.baseURL = 'http://web.ygbxsc.com/index/'//线上
-// axios.defaults.baseURL = 'http://106.37.74.50:13023'//线上
-
-
 // 添加请求拦截器
 axios.interceptors.request.use(config => {
   if (config.url.indexOf('userinfo') < 0) {
