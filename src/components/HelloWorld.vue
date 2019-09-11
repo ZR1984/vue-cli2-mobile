@@ -6,12 +6,16 @@
       v-if="isShowCenterShade"
       @clickCenterShadeOptFuc="clickCenterShadeOptFuc"
     ></CenterShade>
+    <Tabs :tabsArr="tabsArr" :isFlexLayout="isFlexLayout" @getTabsItemWidth='getTabsItemWidth'></Tabs>
+    <Search></Search>
   </div>
 </template>
 
 <script>
 import LeftCenterRightList from "@/components/leftCenterRightList";
 import CenterShade from "@/components/centerShade";
+import Tabs from "@/components/tabs";
+import Search from "@/components/search";
 
 export default {
   props: [""],
@@ -42,12 +46,29 @@ export default {
         ]
       },
       isShowCenterShade: false,
+      tabsArr: [
+        {
+          tab_title: "这是测试tab1"
+        },
+        {
+          tab_title: "这是测试tab2"
+        },
+        {
+          tab_title: "这是测试tab1"
+        },
+        {
+          tab_title: "这是测试tab2"
+        }
+      ],
+      isFlexLayout:false
     };
   },
 
   components: {
     LeftCenterRightList,
-    CenterShade
+    CenterShade,
+    Tabs,
+    Search
   },
 
   computed: {},
@@ -58,6 +79,17 @@ export default {
     clickCenterShadeOptFuc(data) {
       this.isShowCenterShade = false;
       console.log(data);
+    },
+    //获取tabs里所有li的总长度
+    getTabsItemWidth(data) {
+      this.tabsLiWidth = data;
+      this.$nextTick(() => {
+        if (this.tabsLiWidth > document.body.clientWidth) {
+          this.isFlexLayout = false;
+        } else {
+          this.isFlexLayout = true;
+        }
+      });
     }
   },
 
