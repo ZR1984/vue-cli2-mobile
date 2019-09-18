@@ -1,0 +1,56 @@
+.el-message {
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    /*no*/
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #000;
+    height: 120px;
+}
+
+.el-message .el-icon-info {
+    display: none;
+}
+
+.el-message--info .el-message__content {
+    color: #fff;
+    font-size: 40px;
+}
+
+//上传照片墙
+.upload-pic-box {
+    .el-upload--picture-card {
+        position: relative;
+        width: 175px;
+        height: 175px;
+        border: 2px solid #D8D8D8;
+        border-radius: 20px;
+    }
+
+    .el-upload--picture-card i {
+        font-size: 56px;
+    }
+
+    .el-upload-list--picture-card .el-upload-list__item {
+        width: 175px;
+        height: 175px;
+        border: 2px solid #D8D8D8;
+        border-radius: 20px;
+    }
+
+    .el-upload-list--picture-card .el-upload-list__item-actions:hover span.el-upload-list__item-preview {
+        display: none;
+    }
+
+    .el-upload-list__item-actions {
+        opacity: 1;
+    }
+
+    .el-upload-list--picture-card .el-upload-list__item-actions:hover span.el-upload-list__item-delete {
+        display: inline-block;
+    }
+    .el-upload--picture-card:hover, .el-upload:focus{
+        color:#333;
+    }
+}

@@ -8,6 +8,8 @@
     ></CenterShade>
     <Tabs :tabsArr="tabsArr" :isFlexLayout="isFlexLayout" @getTabsItemWidth='getTabsItemWidth'></Tabs>
     <Search></Search>
+    <UploadPic></UploadPic>
+    <PasswordShade></PasswordShade>
   </div>
 </template>
 
@@ -16,6 +18,8 @@ import LeftCenterRightList from "@/components/leftCenterRightList";
 import CenterShade from "@/components/centerShade";
 import Tabs from "@/components/tabs";
 import Search from "@/components/search";
+import UploadPic from "@/components/uploadPic";
+import PasswordShade from "@/components/passwordShade";
 
 export default {
   props: [""],
@@ -68,12 +72,16 @@ export default {
     LeftCenterRightList,
     CenterShade,
     Tabs,
-    Search
+    Search,
+    UploadPic,
+    PasswordShade
   },
 
   computed: {},
 
-  mounted() {},
+  mounted() {
+    this.$message('test')
+  },
 
   methods: {
     clickCenterShadeOptFuc(data) {
