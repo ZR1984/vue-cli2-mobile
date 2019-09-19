@@ -6,10 +6,17 @@
       v-if="isShowCenterShade"
       @clickCenterShadeOptFuc="clickCenterShadeOptFuc"
     ></CenterShade>
-    <Tabs :tabsArr="tabsArr" :isFlexLayout="isFlexLayout" @getTabsItemWidth='getTabsItemWidth'></Tabs>
+    <Tabs :tabsArr="tabsArr" :isFlexLayout="isFlexLayout" @getTabsItemWidth="getTabsItemWidth"></Tabs>
     <Search></Search>
     <UploadPic></UploadPic>
-    <PasswordShade></PasswordShade>
+    <PasswordShade v-if="isShowPasswordInputShade"></PasswordShade>
+    <!-- 地址选择弹窗 -->
+    <div class="m_t30" id="multiPickerInput">点击选择地址</div>
+    <div id="targetContainer"></div>
+
+    <!-- 日期选择弹窗 -->
+    <div class="m_t30" id="date-selector-input">点击选择时间</div>
+    <div id="dateTargetContainer"></div>
   </div>
 </template>
 
@@ -20,6 +27,13 @@ import Tabs from "@/components/tabs";
 import Search from "@/components/search";
 import UploadPic from "@/components/uploadPic";
 import PasswordShade from "@/components/passwordShade";
+
+import MultiPicker from "mob-multi-picker";
+import "../assets/css/multiPicker.less";
+import AddressData from "../../static/province-city-area.json";
+
+import DateSelector from "mob-date-selector";
+import "../assets/css/dateSelector.less";
 
 export default {
   props: [""],
@@ -64,7 +78,9 @@ export default {
           tab_title: "这是测试tab2"
         }
       ],
-      isFlexLayout:false
+      isFlexLayout: false,
+      isShowPasswordInputShade: false,
+      provinceCityStr: ""
     };
   },
 
@@ -80,7 +96,37 @@ export default {
   computed: {},
 
   mounted() {
-    this.$message('test')
+    this.$message("test");
+    let self = this;
+    new MultiPicker({
+      input: "multiPickerInput",
+      container: "targetContainer",
+      jsonData: AddressData,
+      success(arr) {
+        switch (arr.length) {
+          case 2:
+            self.provinceCityStr = `${arr[0].value}市${arr[1].value}`;
+            break;
+          case 3:
+            self.provinceCityStr = `${arr[0].value}省${arr[1].value}市${arr[2].value}`;
+            break;
+        }
+        console.log(self.provinceCityStr);
+      }
+    });
+
+    new DateSelector({
+      input: "date-selector-input",
+      container: "dateTargetContainer",
+      type: 0,
+      param: [1, 1, 1, 0, 0],
+      beginTime: [1950, 1, 1],
+      endTime: [],
+      recentTime: [1990, 1, 1],
+      success: function(arr, arr2) {
+        console.log(arr,arr2)
+      }
+    });
   },
 
   methods: {
