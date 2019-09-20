@@ -7,11 +7,11 @@ axios.defaults.baseURL = urlConfig.baseUrl
 
 // 添加请求拦截器
 axios.interceptors.request.use(config => {
-  if (config.url.indexOf('userinfo') < 0) {
-    if (store.state.user.token && !config.headers['X-Token']) {
-      config.headers['X-Token'] = store.state.user.token
-    }
-  }
+  // if (config.url.indexOf('userinfo') < 0) {
+  //   if (store.state.user.token && !config.headers['X-Token']) {
+  //     config.headers['X-Token'] = store.state.user.token
+  //   }
+  // }
   return config
 }, error => {
   return Promise.reject(error)
@@ -69,7 +69,7 @@ export default {
       // headers:headers
     }).then((response) => {
       // return Success(response.data)
-      return response.data.data
+      return response.data
     }).catch((res) => {
       // return Fail(res)
       return res
@@ -84,7 +84,7 @@ export default {
       // headers: headers
     }).then((response) => {
       // return Success(response.data)
-      return response.data.data
+      return response.data
     }).catch((res) => {
       // return Fail(res)
       return res
@@ -100,7 +100,7 @@ export default {
       // headers: headers
     }).then((response) => {
       // return Success(response.data)
-      return response.data.data
+      return response.data
     }).catch((res) => {
       // return Fail(res)
       return res
@@ -115,7 +115,7 @@ export default {
       // headers:headers
     }).then((response) => {
       // return Success(response.data)
-      return response.data.data
+      return response.data
     }).catch((res) => {
       // return Fail(res)
       return res
@@ -130,7 +130,7 @@ export default {
       // headers: headers
     }).then((response) => {
       // return Success(response.data)
-      return response.data.data
+      return response.data
     }).catch((res) => {
       // return Fail(res)
       return res

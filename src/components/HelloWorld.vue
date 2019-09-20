@@ -10,6 +10,7 @@
     <Search></Search>
     <UploadPic></UploadPic>
     <PasswordShade v-if="isShowPasswordInputShade"></PasswordShade>
+
     <!-- 地址选择弹窗 -->
     <div class="m_t30" id="multiPickerInput">点击选择地址</div>
     <div id="targetContainer"></div>
@@ -17,6 +18,10 @@
     <!-- 日期选择弹窗 -->
     <div class="m_t30" id="date-selector-input">点击选择时间</div>
     <div id="dateTargetContainer"></div>
+
+    <section class="m_t30">
+      <Waterfall></Waterfall>
+    </section>
   </div>
 </template>
 
@@ -27,6 +32,7 @@ import Tabs from "@/components/tabs";
 import Search from "@/components/search";
 import UploadPic from "@/components/uploadPic";
 import PasswordShade from "@/components/passwordShade";
+import Waterfall from "@/components/waterfall";
 
 import MultiPicker from "mob-multi-picker";
 import "../assets/css/multiPicker.less";
@@ -90,7 +96,8 @@ export default {
     Tabs,
     Search,
     UploadPic,
-    PasswordShade
+    PasswordShade,
+    Waterfall
   },
 
   computed: {},
@@ -124,7 +131,7 @@ export default {
       endTime: [],
       recentTime: [1990, 1, 1],
       success: function(arr, arr2) {
-        console.log(arr,arr2)
+        console.log(arr, arr2);
       }
     });
   },

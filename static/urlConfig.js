@@ -1,4 +1,4 @@
 export const urlConfig = {
-    baseUrl:'https://mag.petlemon.com'
+    baseUrl:'http://www.ruizhi.com:1234'
     // baseUrl:'https://golden.petlemon.com'
 }
