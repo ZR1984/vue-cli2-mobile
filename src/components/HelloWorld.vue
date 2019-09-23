@@ -22,6 +22,8 @@
     <section class="m_t30">
       <Waterfall></Waterfall>
     </section>
+
+    <CountDown endTime="1490761620" endText="已经结束了"></CountDown>
   </div>
 </template>
 
@@ -33,6 +35,7 @@ import Search from "@/components/search";
 import UploadPic from "@/components/uploadPic";
 import PasswordShade from "@/components/passwordShade";
 import Waterfall from "@/components/waterfall";
+import CountDown from "@/components/countDown";
 
 import MultiPicker from "mob-multi-picker";
 import "../assets/css/multiPicker.less";
@@ -97,7 +100,8 @@ export default {
     Search,
     UploadPic,
     PasswordShade,
-    Waterfall
+    Waterfall,
+    CountDown
   },
 
   computed: {},
